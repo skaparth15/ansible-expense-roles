@@ -3,13 +3,9 @@
     name: nginx
     state: present
 
-- name: enabiling nginx service
-  ansible.builtin.service:
-    name: nginx
-    enabled: true
-    state: started
-
 - name: removing the existing files
+
+
   ansible.builtin.file:
     path: /usr/share/nginx/html
     state: absent
@@ -31,6 +27,12 @@
   ansible.builtin.template:
     src: expense.conf
     dest: /etc/nginx/default.d/expense.conf
+
+- name: enabiling nginx service
+  ansible.builtin.service:
+    name: nginx
+    enabled: true
+    state: started
 
 - name: Restarting the nginx service
   ansible.builtin.systemd_service:
