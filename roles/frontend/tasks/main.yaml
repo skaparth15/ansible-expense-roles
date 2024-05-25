@@ -4,7 +4,7 @@
     state: present
 
 - name: enabiling nginx service
-  ansible.builtin.systemd_service:
+  ansible.builtin.service:
     name: nginx
     enabled: true
     state: started
@@ -33,7 +33,6 @@
     dest: /etc/nginx/default.d/expense.conf
 
 - name: Restarting the nginx service
-
   ansible.builtin.systemd_service:
     name: nginx
     state: restarted
