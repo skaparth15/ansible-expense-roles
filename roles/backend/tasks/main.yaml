@@ -1,0 +1,69 @@
+- name: disabling the current vesrion of nodejs
+  ansible.builtin.command: dnf module disable nodejs -y
+
+- name: enabiling the required version of node js
+  ansible.builtin.command: dnf module enable nodejs:20 -y
+
+- name: installing the nodejs software
+  ansible.builtin.command: dnf install nodejs -y
+
+- name: adding application user
+  ansible.builtin.user:
+    name: expense
+
+- name: creating a directory for application
+  ansible.builtin.file:
+    path: /app
+    state: directory
+
+- name: downloading the code from the given url
+  ansible.builtin.get_url:
+    url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+    dest: /tmp/backend.zip
+
+- name: unzipping the code in application directory
+  ansible.builtin.unarchive:
+    src: /tmp/backend.zip
+    dest: /app
+    remote_src: yes
+
+- name: downloading the required dependencies
+  ansible.builtin.command: npm install
+  args:
+    chdir: /app
+
+- name: installing mysql
+  ansible.builtin.dnf:
+    name: mysql
+    state: installed
+
+- name: install python mysql dependencies
+  ansible.builtin.pip:
+    name:
+    - PyMySQL # to connect MySQL DB from Ansible
+    - cryptography
+    executable: pip3.9 # pip3.11 if python version is 3.11
+
+- name: creating a directory for system services
+
+  ansible.builtin.template:
+    src: backend.service
+    dest: /etc/systemd/system/backend.service
+
+- name: import data into mysql
+
+  community.mysql.mysql_db:
+    login_user: root
+    login_password: "{{ login_password }}"
+    login_host: "{{ login_host }}"
+    target: /app/schema/backend.sql
+    state: import
+    name: all
+
+- name: starting the backend service
+
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+    name: backend
+    enabled: true
+    state: started
