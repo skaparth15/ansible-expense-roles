@@ -9,5 +9,5 @@ regions:
 
 filters:
   tag:Name:
-  - 'backend*'
+  - 'Backend*'
 
