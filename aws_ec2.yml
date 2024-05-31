@@ -10,4 +10,8 @@ keyed_groups:
 filters:
   tag:Name:
   - 'Backend*'
+  - ip-address
+  - dns-name
+  - tag:Name
+  - private-ip-address
 
