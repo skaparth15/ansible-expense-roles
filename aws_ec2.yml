@@ -10,8 +10,5 @@ parent_group: ""
 filters:
 tag:Name:
 - 'Backend*'
-hostnames:
-- name: 'private-ip-address'
-  separator: '_'
-  prefix: 'tag:Name'
+ansible_host: private_ip_address
 
