@@ -1,5 +1,5 @@
 - name: installing nginx server
-  hoste: all
+  hosts: all
   tasks:
   - name: started installing nginx
     ansible.builtin.dnf:
