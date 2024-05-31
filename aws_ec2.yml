@@ -10,5 +10,7 @@ parent_group: ""
 filters:
 tag:Name:
 - 'Backend*'
+
+compose:
 ansible_host: private_ip_address
 
