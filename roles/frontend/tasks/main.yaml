@@ -28,7 +28,7 @@
     src: expense.conf
     dest: /etc/nginx/default.d/expense.conf
     notify:
-    - Restarting the nginx service
+      - Restarting the nginx service
 
 - name: enabiling nginx service
   ansible.builtin.service:
