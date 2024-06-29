@@ -49,8 +49,7 @@
   ansible.builtin.template:
     src: backend.service
     dest: /etc/systemd/system/backend.service
-    notify:
-    - starting the backend service
+    
 
 - name: import data into mysql
 
