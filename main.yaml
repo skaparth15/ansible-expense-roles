@@ -1,5 +1,5 @@
 - name: "configuration of {{component}}"
-  hosts: "{{component}}"
+  hosts: backend
   become: yes
   roles:
     - "{{component}}"
