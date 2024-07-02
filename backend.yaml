@@ -1,5 +1,5 @@
 - name: configuration of backend
-  hosts: backend
+  hosts: backend-expense.ilovedevops.fun
   become: yes
   roles:
     - backend
