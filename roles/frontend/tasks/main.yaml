@@ -19,7 +19,7 @@
 - name: unzipping the contents to the original location
 
   ansible.builtin.unarchive:
-    src: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+    src: http://nexus-server:8081/repository/frontend-expense/com/expense/frontend/1.0/frontend-1.0.zip
     dest: /usr/share/nginx/html
     remote_src: yes
 
