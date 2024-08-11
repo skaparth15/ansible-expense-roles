@@ -18,7 +18,8 @@
 
 - name: downloading the code from the given url
   ansible.builtin.get_url:
-    url: http://expense-mini-nexus.ilovedevops.fun:8081/repository/backend-expense/com/expense/backend/1.0/backend-1.0.zip
+    url: http://expense-mini-nexus.ilovedevops.fun:8081/repository/backend-expense/com/expense/backend/backend-.zip
+
     dest: /tmp/backend.zip
 
 - name: unzipping the code in application directory
